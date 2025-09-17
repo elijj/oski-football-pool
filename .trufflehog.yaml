@@ -1,0 +1,67 @@
+# =============================================================================
+# TruffleHog Configuration for Football Pool Project
+# =============================================================================
+# This configuration defines what secrets to scan for and what to ignore
+
+# High entropy strings to detect
+detectors:
+  - "aws"
+  - "azure"
+  - "gcp"
+  - "generic"
+  - "github"
+  - "gitlab"
+  - "slack"
+  - "discord"
+  - "stripe"
+  - "paypal"
+  - "square"
+  - "coinbase"
+  - "privatekey"
+  - "rsa"
+  - "ssh"
+  - "pgp"
+  - "jwt"
+  - "api-key"
+  - "apikey"
+  - "secret"
+  - "password"
+  - "token"
+  - "credential"
+
+# File patterns to scan
+paths:
+  - "."
+
+# File patterns to exclude
+exclude_paths:
+  - ".git/"
+  - "venv/"
+  - ".venv/"
+  - "__pycache__/"
+  - "*.pyc"
+  - "*.pyo"
+  - "*.pyd"
+  - ".pytest_cache/"
+  - "htmlcov/"
+  - ".coverage"
+  - "coverage.xml"
+  - "*.log"
+  - "logs/"
+  - "*.db"
+  - "*.sqlite"
+  - "*.sqlite3"
+  - "pool_tracker.db"
+  - "cache_odds_week_*.json"
+  - "api_usage.json"
+  - "automation.json"
+  - "bandit-report.json"
+  - ".secrets.baseline"
+  - "examples/"
+  - "docs/"
+  - "tests/"
+  - ".pre-commit-config.yaml"
+  - ".trufflehog.yaml"
+
+# Verification settings
+verify: false

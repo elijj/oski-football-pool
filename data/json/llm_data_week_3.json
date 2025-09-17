@@ -1,0 +1,29 @@
+{
+  "week": 3,
+  "games": [
+    {
+      "game": "KC@NYG",
+      "spread": -7.5
+    }
+  ],
+  "spreads": {
+    "KC@NYG": -7.5
+  },
+  "public_percentages": {
+    "KC@NYG": 65.0
+  },
+  "injuries": {
+    "KC@NYG": "No key injuries"
+  },
+  "weather": {
+    "KC@NYG": "Clear, 45\u00b0F"
+  },
+  "situational_factors": {
+    "KC@NYG": {
+      "must_win": false
+    }
+  },
+  "confidence_scores": {
+    "KC@NYG": 78.0
+  }
+}

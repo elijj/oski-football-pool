@@ -1,0 +1,102 @@
+[
+  {
+    "game": "KC@NYG",
+    "pick": "KC",
+    "points": 20
+  },
+  {
+    "game": "DAL@CHI",
+    "pick": "DAL",
+    "points": 19
+  },
+  {
+    "game": "GB@CLEV",
+    "pick": "GB",
+    "points": 18
+  },
+  {
+    "game": "HOU@JAC",
+    "pick": "HOU",
+    "points": 17
+  },
+  {
+    "game": "CINC@MINN",
+    "pick": "CINC",
+    "points": 16
+  },
+  {
+    "game": "PITT@NE",
+    "pick": "PITT",
+    "points": 15
+  },
+  {
+    "game": "LAR@PHIL",
+    "pick": "PHIL",
+    "points": 14
+  },
+  {
+    "game": "NYJ@TB",
+    "pick": "TB",
+    "points": 13
+  },
+  {
+    "game": "IND@TENN",
+    "pick": "TENN",
+    "points": 12
+  },
+  {
+    "game": "LV@WASH",
+    "pick": "WASH",
+    "points": 11
+  },
+  {
+    "game": "DEN@LAC",
+    "pick": "LAC",
+    "points": 10
+  },
+  {
+    "game": "NO@SEA",
+    "pick": "SEA",
+    "points": 9
+  },
+  {
+    "game": "ATL@CAR",
+    "pick": "CAR",
+    "points": 8
+  },
+  {
+    "game": "FLA@Mia,F",
+    "pick": "FLA",
+    "points": 7
+  },
+  {
+    "game": "MIA@BUFF",
+    "pick": "BUFF",
+    "points": 6
+  },
+  {
+    "game": "CAL@SDSU",
+    "pick": "CAL",
+    "points": 5
+  },
+  {
+    "game": "STAN@VA",
+    "pick": "STAN",
+    "points": 4
+  },
+  {
+    "game": "UW@WSO",
+    "pick": "UW",
+    "points": 3
+  },
+  {
+    "game": "DET@BALT",
+    "pick": "BALT",
+    "points": 2
+  },
+  {
+    "game": "ARIZ@SF",
+    "pick": "SF",
+    "points": 1
+  }
+]

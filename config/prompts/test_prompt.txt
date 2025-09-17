@@ -1,0 +1,65 @@
+
+# Week 3 Football Pool Research Request
+
+Please analyze the following games and provide structured data in JSON format:
+
+## Games to Analyze:
+- CAL@SDSU
+- STAN@VA
+- UW@WSU
+- FLA@Mia,F
+- MIA@BUFF
+- ATL@CAR
+- GB@CLEV
+- HOU@JAC
+- CINC@MINN
+- PITT@NE
+- LAR@PHIL
+- NYJ@TB
+- IND@TENN
+- LV@WASH
+- DEN@LAC
+- NO@SEA
+- DAL@CHI
+- ARIZ@SF
+- KC@NYG
+- DET@BALT
+
+## Required Analysis for Each Game:
+1. **Current Spread**: Vegas spread (e.g., -7.5 for home team favored by 7.5)
+2. **Public Betting Percentage**: What % of public is betting on each side
+3. **Injury Reports**: Key injuries affecting the game
+4. **Weather Conditions**: Impact on outdoor games
+5. **Situational Factors**:
+   - Must-win scenarios
+   - Revenge games
+   - Lookahead spots
+   - Short weeks
+   - Extra rest
+6. **Confidence Score**: Your confidence in each pick (0-100)
+
+## Required JSON Format:
+```json
+{
+  "week": 3,
+  "games": [
+    {
+      "game": "KC@NYG",
+      "spread": -7.5,
+      "public_percentage": 65,
+      "injuries": "KC: Mahomes questionable, NYG: Barkley out",
+      "weather": "Clear, 45°F",
+      "situational_factors": {
+        "must_win": false,
+        "revenge_game": false,
+        "lookahead_spot": false,
+        "short_week": false,
+        "extra_rest": false
+      },
+      "confidence_score": 78
+    }
+  ]
+}
+```
+
+Please provide your analysis in the exact JSON format above.

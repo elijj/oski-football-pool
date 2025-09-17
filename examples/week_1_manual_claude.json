@@ -1,0 +1,35 @@
+{
+  "week": 1,
+  "games": [
+    {
+      "game": "KC@NYG",
+      "spread": -8.0,
+      "public_percentage": 70,
+      "injuries": "KC: No significant injuries. NYG: Darren Waller (hamstring) questionable, Dexter Lawrence (ankle) limited",
+      "weather": "Indoor stadium (MetLife Stadium) - no weather impact",
+      "situational_factors": {
+        "must_win": false,
+        "revenge_game": false,
+        "lookahead_spot": false,
+        "short_week": false,
+        "extra_rest": false
+      },
+      "confidence_score": 88
+    },
+    {
+      "game": "BUF@MIA",
+      "spread": -4.0,
+      "public_percentage": 65,
+      "injuries": "BUF: No significant injuries. MIA: Tua Tagovailoa (ankle) questionable",
+      "weather": "Outdoor stadium - potential wind impact",
+      "situational_factors": {
+        "must_win": true,
+        "revenge_game": false,
+        "lookahead_spot": false,
+        "short_week": false,
+        "extra_rest": false
+      },
+      "confidence_score": 82
+    }
+  ]
+}

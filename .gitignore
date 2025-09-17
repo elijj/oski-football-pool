@@ -1,0 +1,380 @@
+# =============================================================================
+# Football Pool Domination System - .gitignore
+# =============================================================================
+# This file defines what files and directories should be ignored by Git
+# for the Football Pool Domination System project.
+
+# =============================================================================
+# PYTHON SPECIFIC
+# =============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =============================================================================
+# TESTING & COVERAGE
+# =============================================================================
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# =============================================================================
+# VIRTUAL ENVIRONMENTS
+# =============================================================================
+
+# Virtual environments
+.env
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+conda-meta/
+
+# =============================================================================
+# IDE & EDITOR FILES
+# =============================================================================
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# =============================================================================
+# TYPE CHECKING & LINTING
+# =============================================================================
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+
+# Sphinx documentation
+docs/_build/
+docs/build/
+
+# MkDocs
+/site
+
+# =============================================================================
+# PROJECT-SPECIFIC FILES
+# =============================================================================
+
+# Database files
+*.db
+*.sqlite3
+*.sqlite
+pool_tracker.db
+data/*.db
+data/*.sqlite*
+
+# API Cache files (contain sensitive data and are regenerated)
+cache_odds_week_*.json
+api_usage.json
+data/cache/*.json
+data/json/api_usage.json
+
+# Environment variables (contains API keys)
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# =============================================================================
+# DATA FILES & EXPORTS
+# =============================================================================
+
+# Excel/CSV exports (may contain sensitive data)
+*.xlsx
+*.xls
+*.csv
+exports/
+data/exports/
+data/excel/*.xlsx
+
+# Example data files (contain test data)
+examples/week_*_llm.json
+examples/week_*_results.json
+examples/week_*_competitor.json
+examples/*_sample.json
+
+# Backup files
+*.bak
+*.backup
+backups/
+
+# =============================================================================
+# SYSTEM FILES
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# SECURITY & SENSITIVE DATA
+# =============================================================================
+
+# API Keys and secrets
+secrets/
+.secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Personal data
+personal/
+private/
+confidential/
+
+# =============================================================================
+# DEVELOPMENT & DEBUGGING
+# =============================================================================
+
+# Debug files
+debug/
+*.debug
+*.trace
+
+# Profiling
+*.prof
+*.profile
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# =============================================================================
+# DEPLOYMENT & PRODUCTION
+# =============================================================================
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Kubernetes
+*.kubeconfig
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# =============================================================================
+# PACKAGE MANAGERS
+# =============================================================================
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+pdm.lock
+
+# conda
+conda-meta/
+.conda/
+
+# =============================================================================
+# MISCELLANEOUS
+# =============================================================================
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
+*.sage.py
+
+# Translations
+*.mo
+*.pot
+
+# Cython
+cython_debug/
+
+# PEP 582
+__pypackages__/
+
+# =============================================================================
+# PROJECT-SPECIFIC IGNORES
+# =============================================================================
+
+# Generated reports
+reports/
+output/
+results/
+
+# User-specific configurations
+user_config.json
+local_settings.py
+
+# Test data that shouldn't be committed
+test_data/
+sample_data/
+
+# Performance monitoring
+*.perf
+performance/
+
+# =============================================================================
+# NOTES
+# =============================================================================
+#
+# This .gitignore is specifically designed for the Football Pool Domination System.
+# It balances security (ignoring sensitive data) with development convenience.
+#
+# Key principles:
+# 1. Never commit API keys or sensitive data
+# 2. Ignore generated/cache files that can be recreated
+# 3. Ignore user-specific IDE files
+# 4. Ignore temporary and log files
+# 5. Keep example files but ignore actual data files
+#
+# If you need to commit example data, rename files to *_template.json
+# =============================================================================

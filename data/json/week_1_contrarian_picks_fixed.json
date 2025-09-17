@@ -1,0 +1,84 @@
+{
+  "picks": [
+    {
+      "team": "KC",
+      "confidence": 20
+    },
+    {
+      "team": "BAL",
+      "confidence": 19
+    },
+    {
+      "team": "LAR",
+      "confidence": 18
+    },
+    {
+      "team": "DAL",
+      "confidence": 17
+    },
+    {
+      "team": "GB",
+      "confidence": 16
+    },
+    {
+      "team": "SF",
+      "confidence": 15
+    },
+    {
+      "team": "MIA",
+      "confidence": 14
+    },
+    {
+      "team": "BUF",
+      "confidence": 13
+    },
+    {
+      "team": "DET",
+      "confidence": 12
+    },
+    {
+      "team": "ND",
+      "confidence": 11
+    },
+    {
+      "team": "TB",
+      "confidence": 10
+    },
+    {
+      "team": "ATL",
+      "confidence": 9
+    },
+    {
+      "team": "CAR",
+      "confidence": 8
+    },
+    {
+      "team": "ARI",
+      "confidence": 7
+    },
+    {
+      "team": "SEA",
+      "confidence": 6
+    },
+    {
+      "team": "LAC",
+      "confidence": 5
+    },
+    {
+      "team": "LV",
+      "confidence": 4
+    },
+    {
+      "team": "DEN",
+      "confidence": 3
+    },
+    {
+      "team": "WAS",
+      "confidence": 2
+    },
+    {
+      "team": "PIT",
+      "confidence": 1
+    }
+  ]
+}

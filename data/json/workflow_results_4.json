@@ -1,0 +1,45 @@
+{
+  "week": 4,
+  "date": "2024-09-24",
+  "monday": {
+    "prompt_generated": true,
+    "llm_analysis": false,
+    "picks_generated": 20,
+    "excel_created": true,
+    "validation_passed": false,
+    "errors": [
+      "Duplicate confidence points found"
+    ]
+  },
+  "tuesday": {
+    "competitor_analysis": {
+      "total_competitors": 0,
+      "public_favorites": {},
+      "contrarian_opportunities": [],
+      "edge_plays": []
+    },
+    "edge_analysis": {
+      "public_fade_opportunities": [],
+      "injury_misinformation": [],
+      "weather_plays": [],
+      "situational_factors": []
+    },
+    "picks_optimized": 20,
+    "validation_passed": false,
+    "errors": [
+      "Duplicate confidence points found"
+    ]
+  },
+  "wednesday": {
+    "final_validation": {
+      "valid": false,
+      "error": "min() iterable argument is empty"
+    },
+    "submission_summary": "Error generating summary",
+    "backup_files": [],
+    "email_sent": false,
+    "submission_logged": true
+  },
+  "status": "completed",
+  "timestamp": "2025-09-16T20:15:12.598352"
+}

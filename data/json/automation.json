@@ -1,0 +1,10 @@
+{
+  "auto_email": false,
+  "email_recipient": "",
+  "smtp_server": "",
+  "smtp_port": 587,
+  "smtp_username": "",
+  "smtp_password": "",
+  "backup_enabled": true,
+  "notifications_enabled": true
+}
