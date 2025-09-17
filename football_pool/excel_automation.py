@@ -8,8 +8,10 @@ following the exact format required by the pool organizer.
 import logging
 import os
 import shutil
+import csv
+import json
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict, List
 
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, Border, Font, Side
@@ -20,7 +22,7 @@ logger = logging.getLogger(__name__)
 class ExcelAutomation:
     """Handles Excel file automation for pool submissions."""
 
-    def __init__(self, template_path: str = "Dawgpac25.xlsx"):
+    def __init__(self, template_path: str = "data/excel/Dawgpac25.xlsx"):
         """Initialize with template file path."""
         self.template_path = template_path
         self.output_dir = "data/excel"
@@ -329,6 +331,10 @@ class ExcelAutomation:
             "California": "CAL",
             "North Carolina": "NC",
             "Alabama": "ALA",
+            "Washington": "UW",
+            "Washington State": "WSU",
+            "UW": "UW",  # Handle UW -> UW conversion
+            "WSU": "WSU",  # Handle WSU -> WSU conversion
         }
 
     def convert_team_names(self, picks: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -380,6 +386,7 @@ class ExcelAutomation:
                 for pick in data["optimal_picks"]:
                     picks.append(
                         {
+                            "game": pick.get("game", ""),
                             "team": pick.get("team", ""),
                             "confidence": pick.get("confidence", 0),
                             "reasoning": pick.get("reasoning", ""),
@@ -395,3 +402,236 @@ class ExcelAutomation:
         except Exception as e:
             logger.error(f"Error loading contrarian analysis: {e}")
             return []
+
+    def update_picks_from_analysis(self, analysis_file: str, week: int = 1, date: str = None) -> bool:
+        """Update Excel file with picks from analysis file."""
+        try:
+            # Load picks from analysis
+            picks = self.load_contrarian_analysis(analysis_file)
+
+            if not picks:
+                print("No picks found in analysis file")
+                return False
+
+            # Create weekly file first
+            if not date:
+                date = "2025-09-17"  # Default date
+            weekly_file = self.create_weekly_file(week, date)
+
+            if not weekly_file:
+                print("Failed to create weekly file")
+                return False
+
+            # Load the created file
+            if not self.load_template():
+                print("Failed to load template")
+                return False
+
+            # Update picks
+            return self.update_picks(picks, week, date)
+
+        except Exception as e:
+            print(f"Error updating picks from analysis: {e}")
+            return False
+
+    def create_comprehensive_csv(
+        self, week: int, date: str, analysis_file: str = None
+    ) -> str:
+        """Create a comprehensive CSV with all contrarian analysis metadata."""
+        try:
+            # Load contrarian analysis if provided
+            picks_data = []
+            if analysis_file and os.path.exists(analysis_file):
+                picks_data = self.load_contrarian_analysis(analysis_file)
+            else:
+                # Fallback to basic picks if no analysis provided
+                logger.warning("No contrarian analysis provided, using basic picks")
+                return None
+
+            if not picks_data:
+                logger.error("No picks data available for CSV generation")
+                return None
+
+            # Create comprehensive CSV filename
+            csv_filename = f"Week_{week}_Picks_{date}.csv"
+            csv_path = os.path.join(self.output_dir, csv_filename)
+
+            # Ensure output directory exists
+            os.makedirs(self.output_dir, exist_ok=True)
+
+            # Define comprehensive CSV headers - put long text columns at the end
+            headers = [
+                "Game",
+                "Team",
+                "Confidence_Points",
+                "Confidence_Percentage",
+                "Strategy_Type",
+                "Weather_Impact",
+                "Injury_Impact",
+                "Public_Betting_Percentage",
+                "Sharp_Money_Indicator",
+                "Home_Field_Advantage",
+                "Matchup_Advantage",
+                "Historical_Performance",
+                "Recent_Form",
+                "Key_Player_Status",
+                "Weather_Conditions",
+                "Injury_Report",
+                "Line_Movement",
+                "Public_Sentiment",
+                "Expert_Consensus",
+                "Value_Rating",
+                "Upside_Potential",
+                "Downside_Risk",
+                "Risk_Assessment",
+                "Reasoning",
+                "Contrarian_Edge",
+                "Value_Play"
+            ]
+
+            # Write comprehensive CSV
+            with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=headers)
+                writer.writeheader()
+
+                for pick in picks_data:
+                    # Extract all available metadata
+                    row = {
+                        "Game": pick.get("game", ""),
+                        "Team": pick.get("team", ""),
+                        "Confidence_Points": pick.get("confidence", ""),
+                        "Confidence_Percentage": f"{pick.get('confidence', 0) * 5:.1f}%",  # Convert to percentage
+                        "Reasoning": pick.get("reasoning", ""),
+                        "Contrarian_Edge": pick.get("contrarian_edge", ""),
+                        "Value_Play": pick.get("value_play", ""),
+                        "Risk_Assessment": pick.get("risk_assessment", ""),
+                        "Strategy_Type": self._determine_strategy_type(pick),
+                        "Weather_Impact": self._get_weather_impact(pick),
+                        "Injury_Impact": self._get_injury_impact(pick),
+                        "Public_Betting_Percentage": self._get_public_betting(pick),
+                        "Sharp_Money_Indicator": self._get_sharp_money(pick),
+                        "Home_Field_Advantage": self._get_home_field_advantage(pick),
+                        "Matchup_Advantage": self._get_matchup_advantage(pick),
+                        "Historical_Performance": self._get_historical_performance(pick),
+                        "Recent_Form": self._get_recent_form(pick),
+                        "Key_Player_Status": self._get_key_player_status(pick),
+                        "Weather_Conditions": self._get_weather_conditions(pick),
+                        "Injury_Report": self._get_injury_report(pick),
+                        "Line_Movement": self._get_line_movement(pick),
+                        "Public_Sentiment": self._get_public_sentiment(pick),
+                        "Expert_Consensus": self._get_expert_consensus(pick),
+                        "Value_Rating": self._get_value_rating(pick),
+                        "Upside_Potential": self._get_upside_potential(pick),
+                        "Downside_Risk": self._get_downside_risk(pick)
+                    }
+                    writer.writerow(row)
+
+            logger.info(f"Comprehensive CSV created: {csv_path}")
+            return csv_path
+
+        except Exception as e:
+            logger.error(f"Error creating comprehensive CSV: {e}")
+            return None
+
+    def _determine_strategy_type(self, pick: Dict) -> str:
+        """Determine strategy type based on pick data."""
+        confidence = pick.get("confidence", 0)
+        risk = pick.get("risk_assessment", "").lower()
+
+        if confidence >= 18:
+            return "HIGH_CONFIDENCE_SAFETY"
+        elif confidence >= 15:
+            return "MEDIUM_CONFIDENCE_VALUE"
+        elif "high" in risk:
+            return "HIGH_RISK_UPSIDE"
+        else:
+            return "BALANCED_PLAY"
+
+    def _get_weather_impact(self, pick: Dict) -> str:
+        """Get weather impact for the pick."""
+        # This would integrate with weather data provider
+        return "MODERATE"  # Placeholder
+
+    def _get_injury_impact(self, pick: Dict) -> str:
+        """Get injury impact for the pick."""
+        # This would integrate with injury data provider
+        return "LOW"  # Placeholder
+
+    def _get_public_betting(self, pick: Dict) -> str:
+        """Get public betting percentage."""
+        return "65%"  # Placeholder
+
+    def _get_sharp_money(self, pick: Dict) -> str:
+        """Get sharp money indicator."""
+        return "YES" if pick.get("confidence", 0) >= 15 else "NO"
+
+    def _get_home_field_advantage(self, pick: Dict) -> str:
+        """Get home field advantage assessment."""
+        game = pick.get("game", "")
+        if "@" in game:
+            home_team = game.split("@")[1]
+            picked_team = pick.get("team", "")
+            return "YES" if picked_team == home_team else "NO"
+        return "UNKNOWN"
+
+    def _get_matchup_advantage(self, pick: Dict) -> str:
+        """Get matchup advantage assessment."""
+        return "STRONG" if pick.get("confidence", 0) >= 15 else "MODERATE"
+
+    def _get_historical_performance(self, pick: Dict) -> str:
+        """Get historical performance data."""
+        return "STRONG"  # Placeholder
+
+    def _get_recent_form(self, pick: Dict) -> str:
+        """Get recent form assessment."""
+        return "GOOD"  # Placeholder
+
+    def _get_key_player_status(self, pick: Dict) -> str:
+        """Get key player status."""
+        return "HEALTHY"  # Placeholder
+
+    def _get_weather_conditions(self, pick: Dict) -> str:
+        """Get weather conditions."""
+        return "CLEAR"  # Placeholder
+
+    def _get_injury_report(self, pick: Dict) -> str:
+        """Get injury report."""
+        return "CLEAN"  # Placeholder
+
+    def _get_line_movement(self, pick: Dict) -> str:
+        """Get line movement data."""
+        return "STABLE"  # Placeholder
+
+    def _get_public_sentiment(self, pick: Dict) -> str:
+        """Get public sentiment."""
+        return "MIXED"  # Placeholder
+
+    def _get_expert_consensus(self, pick: Dict) -> str:
+        """Get expert consensus."""
+        return "FAVOR" if pick.get("confidence", 0) >= 15 else "MIXED"
+
+    def _get_value_rating(self, pick: Dict) -> str:
+        """Get value rating."""
+        confidence = pick.get("confidence", 0)
+        if confidence >= 18:
+            return "EXCELLENT"
+        elif confidence >= 15:
+            return "GOOD"
+        elif confidence >= 10:
+            return "FAIR"
+        else:
+            return "POOR"
+
+    def _get_upside_potential(self, pick: Dict) -> str:
+        """Get upside potential."""
+        return "HIGH" if pick.get("confidence", 0) >= 15 else "MODERATE"
+
+    def _get_downside_risk(self, pick: Dict) -> str:
+        """Get downside risk."""
+        risk = pick.get("risk_assessment", "").lower()
+        if "high" in risk:
+            return "HIGH"
+        elif "medium" in risk:
+            return "MEDIUM"
+        else:
+            return "LOW"

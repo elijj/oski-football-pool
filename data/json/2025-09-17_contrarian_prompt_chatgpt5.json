@@ -1,0 +1,62 @@
+{
+    "date": "2025-09-17",
+    "contrarian_analysis": {
+      "public_betting_analysis": {
+        "high_public_games": ["ARIZ@SF", "KC@NYG", "NYJ@TB", "LAR@PHIL", "GB@CLEV", "DET@BALT"],
+        "contrarian_opportunities": ["ATL@CAR", "IND@TENN", "DEN@LAC", "HOU@JAC", "PITT@NE", "CINC@MINN"],
+        "sharp_money_indicators": ["IND@TENN", "DEN@LAC", "HOU@JAC", "PITT@NE", "CINC@MINN", "NO@SEA"]
+      },
+      "weather_impact": {
+        "outdoor_games": ["CAL@SDSU", "STAN@VA", "UW@WSU", "FLA@Mia,F", "ATL@CAR", "GB@CLEV", "HOU@JAC", "CINC@MINN", "PITT@NE", "NYJ@TB", "IND@TENN", "LV@WASH", "NO@SEA", "DAL@CHI", "ARIZ@SF", "KC@NYG", "DET@BALT"],
+        "weather_advantages": ["CAR (run + D in muck)", "TEN (grind game if windy)", "JAC (humidity acclimation)", "SEA (wind/rain experience)", "SF (elements-proof roster)"],
+        "weather_plays": ["ATL@CAR", "IND@TENN", "HOU@JAC", "NO@SEA"]
+      },
+      "injury_analysis": {
+        "key_injuries": ["Monitor QB/RB statuses: IND, TEN, DEN, LAC, HOU, JAC, PITT, NE"],
+        "public_overreactions": ["Star WR ‘Q’ tags driving line drift without snap-count impact", "Defensive role players out undervalued by market"],
+        "injury_value": ["IND@TENN (trenches depth edge)", "HOU@JAC (secondary health swing)", "PITT@NE (LB/S availability)"]
+      },
+      "situational_factors": {
+        "must_win": ["MINN (home vs CINC)", "CAR (division swing vs ATL)"],
+        "revenge_games": ["UW@WSU (rivalry volatility)", "KC@NYG (coach/QB narrative)"],
+        "lookahead_spots": ["SF (vs ARIZ before tougher stretch)", "PHIL (hosting LAR with next-week divisional)"],
+        "short_weeks": ["PITT@NE", "NYJ@TB"],
+        "extra_rest": ["KC@NYG", "GB@CLEV"]
+      }
+    },
+    "optimal_picks": [
+      {
+        "game": "KC@NYG",
+        "team": "KC",
+        "confidence": 20,
+        "reasoning": "SAFEST pick - materially stronger roster, coaching edge, and matchup advantages in the trenches and explosive-pass game.",
+        "contrarian_edge": "Public not at extreme levels due to road spot and brand fatigue; market still favors KC but not crowded.",
+        "value_play": "KC’s pressure + vertical threats stress NYG’s coverage; red-zone TD rate edge.",
+        "risk_assessment": "LOW - Multiple structural advantages; avoid if late injury news flips OL/WR availability."
+      },
+      {
+        "game": "ATL@CAR",
+        "team": "ATL",
+        "confidence": 15,
+        "reasoning": "VALUE play - Market shading toward CAR at home; ATL run-game/PA concepts fit vs CAR front tendencies.",
+        "contrarian_edge": "Public leans to the home dog narrative; ATL away bias creates buy-low.",
+        "value_play": "If weather suppresses explosives, ATL’s sustained-drive profile benefits.",
+        "risk_assessment": "MEDIUM - Division variance and weather randomness."
+      },
+      {
+        "game": "DEN@LAC",
+        "team": "DEN",
+        "confidence": 5,
+        "reasoning": "UPSIDE play - DEN’s defense can keep a lid on explosives; run-heavy script shortens game.",
+        "contrarian_edge": "Public gravitates to LAC passing ceiling; DEN undervalued off prior-week box score.",
+        "value_play": "If LAC OL health wobbles, pressure rate swings live-odds toward DEN.",
+        "risk_assessment": "HIGH - Quarterback volatility and late injury reports can swing outcome."
+      }
+    ],
+    "strategy_summary": {
+      "high_confidence_safety": "Anchor picks on clear roster/coaching mismatches and stable trenches; avoid any game with extreme public (>80%) or noisy injury clouds.",
+      "medium_confidence_value": "Target home/road spots where market overweights recent box scores; lean into run-game/defense profiles in potential weather.",
+      "low_confidence_upside": "Take selective contrarian underdogs in divisional/rivalry games with totals suppression and pass-rush leverage.",
+      "competitive_edge": "Exploit public biases (brand names, recency, star ‘Q’ tags) and keep late-week flexibility to pivot off injury/weather swings."
+    }
+  }

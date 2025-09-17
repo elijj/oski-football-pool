@@ -27,7 +27,8 @@
         "ARIZ@SF",
         "DET@BALT",
         "LV@WASH",
-        "IND@TENN"
+        "IND@TENN",
+        "UW@WSU"
       ],
       "weather_advantages": [
         "NO",
@@ -255,12 +256,12 @@
       "risk_assessment": "HIGH – contrarian play with home field advantage"
     },
     {
-      "game": "NO@CAR",
-      "team": "NO",
+      "game": "UW@WSU",
+      "team": "UW",
       "confidence": 1,
-      "reasoning": "UPSIDE play – Saints have superior talent despite CAR's home field advantage",
-      "contrarian_edge": "Public may favor CAR due to home field, but NO has clear talent edge",
-      "value_play": "NO's offense can exploit CAR's defensive weaknesses, while NO's defense can contain CAR's offense",
+      "reasoning": "UPSIDE play – Washington has superior talent and experience over Washington State",
+      "contrarian_edge": "Public may favor WSU due to home field, but UW has clear talent edge",
+      "value_play": "UW's offense can exploit WSU's defensive weaknesses, while UW's defense can contain WSU's offense",
       "risk_assessment": "HIGH – contrarian play with talent advantages"
     }
   ],

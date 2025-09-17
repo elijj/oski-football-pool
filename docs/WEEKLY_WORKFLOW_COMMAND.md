@@ -1,17 +1,31 @@
 # Weekly Workflow Command - Complete Automation
 
-## 🚀 **SINGLE COMMAND FOR EVERYTHING**
+## 🚀 **ENHANCED WORKFLOW WITH MULTI-LLM INTEGRATION**
 
-Yes! There is now a single command that generates everything you need for the week:
+You now have **TWO powerful workflow options** for maximum earnings:
 
+### **Option 1: Enhanced Multi-LLM Workflow (RECOMMENDED)**
+```bash
+football-pool enhanced-weekly-workflow <week> <date>
+```
+
+### **Option 2: Standard Workflow**
 ```bash
 football-pool weekly-workflow <week> <date>
 ```
 
-## 🎯 **WHAT IT DOES**
+## 🎯 **WHAT EACH WORKFLOW DOES**
 
-The `weekly-workflow` command is the ultimate convenience command that:
+### **Enhanced Multi-LLM Workflow** (RECOMMENDED)
+1. **Generates contrarian analysis prompt**
+2. **Integrates multiple LLM analyses** (Grok + ChatGPT5)
+3. **Creates consensus picks** from multiple perspectives
+4. **Updates Excel with consensus picks**
+5. **Generates comprehensive CSV**
+6. **Creates enhanced strategy report**
+7. **Provides complete summary**
 
+### **Standard Workflow**
 1. **Generates contrarian analysis prompt**
 2. **Updates Excel with picks**
 3. **Creates strategy report**
@@ -20,7 +34,16 @@ The `weekly-workflow` command is the ultimate convenience command that:
 
 ## 📋 **USAGE EXAMPLES**
 
-### **Basic Usage:**
+### **Enhanced Multi-LLM Workflow (RECOMMENDED):**
+```bash
+# Complete enhanced workflow for Week 1
+football-pool enhanced-weekly-workflow 1 2025-09-17
+
+# Skip multi-LLM analysis if you prefer single analysis
+football-pool enhanced-weekly-workflow 1 2025-09-17 --no-multi-llm
+```
+
+### **Standard Workflow:**
 ```bash
 # Generate everything for Week 1
 football-pool weekly-workflow 1 2025-09-17
@@ -47,7 +70,42 @@ football-pool weekly-workflow 1 2025-09-17 --no-llm
 football-pool weekly-workflow 1 2025-09-17 --skip-picks
 ```
 
-## 🔄 **COMPLETE WORKFLOW**
+## 🔄 **ENHANCED MULTI-LLM WORKFLOW PROCESS**
+
+### **Step 1: Generate Contrarian Prompt**
+- Creates contrarian analysis prompt
+- Saves to `data/prompts/{date}_contrarian_prompt.txt`
+- **MANUAL STEP**: Copy prompt to Grok and ChatGPT5, save outputs as:
+  - `data/json/{date}_contrarian_prompt_grok.json`
+  - `data/json/{date}_contrarian_prompt_chatgpt5.json`
+
+### **Step 2: Multi-LLM Analysis Integration**
+- Automatically detects both LLM analysis files
+- Combines insights using consensus strategy
+- Generates 20 consensus picks with confidence points
+- Saves to `data/json/week_{week}_multi_llm_analysis.json`
+
+### **Step 3: Update Excel with Consensus Picks**
+- Updates Excel file with consensus picks
+- Saves to `data/excel/Dawgpac25_{date}.xlsx`
+- Ready for pool submission
+
+### **Step 4: Generate Comprehensive CSV**
+- Creates detailed CSV with all metadata
+- Saves to `data/excel/Week_{week}_Picks_{date}.csv`
+- Includes all analysis factors
+
+### **Step 5: Generate Enhanced Strategy Report**
+- Creates comprehensive markdown report
+- Saves to `reports/Week_{week}_Enhanced_Strategy_Report_{date}.md`
+- Includes multi-LLM insights and consensus reasoning
+
+### **Step 6: Complete Summary**
+- Shows all generated files
+- Provides next steps
+- Highlights competitive edge from multiple LLMs
+
+## 🔄 **STANDARD WORKFLOW PROCESS**
 
 ### **Step 1: Generate Contrarian Prompt**
 - Creates contrarian analysis prompt
@@ -74,10 +132,48 @@ football-pool weekly-workflow 1 2025-09-17 --skip-picks
 - Provides next steps
 - Highlights competitive edge
 
+## 🎯 **EXACT COMMANDS FOR YOUR WORKFLOW**
+
+### **For Week 1 (Your Current Setup):**
+
+#### **Step 1: Generate Prompt**
+```bash
+football-pool prompt 1 --date 2025-09-17
+```
+**Result**: Creates `data/prompts/2025-09-17_contrarian_prompt.txt`
+
+#### **Step 2: Manual LLM Analysis**
+1. Copy the prompt to **Grok** → Save output as `data/json/2025-09-17_contrarian_prompt_grok.json`
+2. Copy the prompt to **ChatGPT5** → Save output as `data/json/2025-09-17_contrarian_prompt_chatgpt5.json`
+
+#### **Step 3: Enhanced Multi-LLM Workflow (ONE COMMAND)**
+```bash
+football-pool enhanced-weekly-workflow 1 --date 2025-09-17
+```
+**Result**: Complete automation with consensus picks from both LLMs
+
+### **For Future Weeks:**
+```bash
+# Generate prompt for Week 2
+football-pool prompt 2 --date 2025-09-24
+
+# After manual LLM analysis, run enhanced workflow
+football-pool enhanced-weekly-workflow 2 --date 2025-09-24
+```
+
 ## 📁 **GENERATED FILES**
 
-After running the command, you get:
+### **Enhanced Multi-LLM Workflow Output:**
+```
+📁 Generated Files:
+  📝 Contrarian Prompt: data/prompts/2025-09-17_contrarian_prompt.txt
+  🤖 Multi-LLM Analysis: data/json/week_1_multi_llm_analysis.json
+  📊 Excel File: data/excel/Dawgpac25_2025-09-17.xlsx
+  📈 Comprehensive CSV: data/excel/Week_1_Picks_2025-09-17.csv
+  📋 Enhanced Strategy Report: reports/Week_1_Enhanced_Strategy_Report_2025-09-17.md
+```
 
+### **Standard Workflow Output:**
 ```
 📁 Generated Files:
   📝 Contrarian Prompt: data/prompts/2025-09-17_contrarian_prompt.txt

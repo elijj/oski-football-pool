@@ -150,18 +150,18 @@ docs/build/
 # =============================================================================
 
 # Database files
-*.db
-*.sqlite3
-*.sqlite
-pool_tracker.db
-data/*.db
-data/*.sqlite*
+# *.db
+# *.sqlite3
+# *.sqlite
+# pool_tracker.db
+# data/*.db
+# data/*.sqlite*
 
 # API Cache files (contain sensitive data and are regenerated)
-cache_odds_week_*.json
-api_usage.json
-data/cache/*.json
-data/json/api_usage.json
+# cache_odds_week_*.json
+# api_usage.json
+# data/cache/*.json
+# data/json/api_usage.json
 
 # Generated prompts (tracked for reference)
 # data/prompts/ - prompts are tracked for reference
@@ -187,12 +187,12 @@ tmp/
 # =============================================================================
 
 # Excel/CSV exports (may contain sensitive data)
-*.xlsx
-*.xls
-*.csv
-exports/
-data/exports/
-data/excel/*.xlsx
+# *.xlsx
+# *.xls
+# *.csv
+# exports/
+# data/exports/
+# data/excel/*.xlsx
 
 # Example data files (contain test data)
 examples/week_*_llm.json
@@ -355,6 +355,22 @@ __pypackages__/
 reports/
 output/
 results/
+
+# Generated Excel files (keep templates, ignore generated)
+data/excel/*.xlsx
+!data/excel/Dawgpac25.xlsx
+!data/excel/2025-2026 Football Schedule.xlsx
+
+# Generated CSV files
+data/excel/*.csv
+
+# Generated JSON analysis files
+data/json/week_*_*.json
+!data/json/api_usage.json
+!data/json/automation.json
+
+# Generated prompts
+data/prompts/*.txt
 
 # User-specific configurations
 user_config.json

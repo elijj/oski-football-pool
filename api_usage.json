@@ -1,0 +1,12 @@
+{
+  "odds_api": {
+    "current_month": null,
+    "requests_used": 0,
+    "last_reset": null
+  },
+  "openrouter": {
+    "current_month": "2025-09",
+    "requests_used": 1,
+    "last_reset": "2025-09-17T12:00:51.716215"
+  }
+}

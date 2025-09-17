@@ -1,0 +1,122 @@
+{
+  "ATL@CAR": {
+    "spread": null,
+    "odds": null,
+    "away_team": "ATL",
+    "home_team": "CAR",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555552"
+  },
+  "GB@CLEV": {
+    "spread": null,
+    "odds": null,
+    "away_team": "GB",
+    "home_team": "CLEV",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555568"
+  },
+  "HOU@JAC": {
+    "spread": null,
+    "odds": null,
+    "away_team": "HOU",
+    "home_team": "JAC",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555574"
+  },
+  "CINC@MINN": {
+    "spread": null,
+    "odds": null,
+    "away_team": "CINC",
+    "home_team": "MINN",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555578"
+  },
+  "PITT@NE": {
+    "spread": null,
+    "odds": null,
+    "away_team": "PITT",
+    "home_team": "NE",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555583"
+  },
+  "LAR@PHIL": {
+    "spread": null,
+    "odds": null,
+    "away_team": "LAR",
+    "home_team": "PHIL",
+    "game_time": "2025-09-21T17:01:00Z",
+    "last_updated": "2025-09-16T18:17:12.555588"
+  },
+  "NYJ@TB": {
+    "spread": null,
+    "odds": null,
+    "away_team": "NYJ",
+    "home_team": "TB",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555596"
+  },
+  "IND@TENN": {
+    "spread": null,
+    "odds": null,
+    "away_team": "IND",
+    "home_team": "TENN",
+    "game_time": "2025-09-21T17:01:00Z",
+    "last_updated": "2025-09-16T18:17:12.555600"
+  },
+  "LV@WASH": {
+    "spread": null,
+    "odds": null,
+    "away_team": "LV",
+    "home_team": "WASH",
+    "game_time": "2025-09-21T17:00:00Z",
+    "last_updated": "2025-09-16T18:17:12.555604"
+  },
+  "DEN@LAC": {
+    "spread": null,
+    "odds": null,
+    "away_team": "DEN",
+    "home_team": "LAC",
+    "game_time": "2025-09-21T20:05:00Z",
+    "last_updated": "2025-09-16T18:17:12.555608"
+  },
+  "NO@SEA": {
+    "spread": null,
+    "odds": null,
+    "away_team": "NO",
+    "home_team": "SEA",
+    "game_time": "2025-09-21T20:05:00Z",
+    "last_updated": "2025-09-16T18:17:12.555612"
+  },
+  "DAL@CHI": {
+    "spread": null,
+    "odds": null,
+    "away_team": "DAL",
+    "home_team": "CHI",
+    "game_time": "2025-09-21T20:25:00Z",
+    "last_updated": "2025-09-16T18:17:12.555617"
+  },
+  "ARIZ@SF": {
+    "spread": null,
+    "odds": null,
+    "away_team": "ARIZ",
+    "home_team": "SF",
+    "game_time": "2025-09-21T20:26:00Z",
+    "last_updated": "2025-09-16T18:17:12.555621"
+  },
+  "KC@NYG": {
+    "spread": null,
+    "odds": null,
+    "away_team": "KC",
+    "home_team": "NYG",
+    "game_time": "2025-09-22T00:21:00Z",
+    "last_updated": "2025-09-16T18:17:12.555625"
+  },
+  "DET@BALT": {
+    "spread": null,
+    "odds": null,
+    "away_team": "DET",
+    "home_team": "BALT",
+    "game_time": "2025-09-23T00:15:00Z",
+    "last_updated": "2025-09-16T18:17:12.555630"
+  }
+}

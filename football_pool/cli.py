@@ -1277,6 +1277,251 @@ def enhanced_report(
 
 
 @app.command()
+def value_optimization(
+    week: int = typer.Argument(..., help="Week number"),
+    analysis: str = typer.Option(None, "--analysis", "-a", help="Path to contrarian analysis JSON file"),
+    output: str = typer.Option(None, "--output", "-o", help="Output file for value analysis report"),
+):
+    """Analyze picks for value play opportunities and optimization."""
+    try:
+        from .value_optimization import ValuePlayOptimizer
+        import json
+
+        if not analysis:
+            console.print("❌ Analysis file required for value optimization")
+            raise typer.Exit(1)
+
+        # Load contrarian analysis
+        with open(analysis, 'r') as f:
+            data = json.load(f)
+
+        picks = data.get("optimal_picks", [])
+        if not picks:
+            console.print("❌ No picks found in analysis file")
+            raise typer.Exit(1)
+
+        # Run value optimization
+        optimizer = ValuePlayOptimizer()
+        value_plays = optimizer.analyze_value_plays(picks)
+        optimized_plays = optimizer.optimize_confidence_allocation(value_plays)
+        value_report = optimizer.generate_value_report(optimized_plays)
+
+        # Display results
+        console.print(f"🎯 Value Optimization Analysis for Week {week}")
+        console.print("=" * 60)
+
+        # Summary
+        summary = value_report["summary"]
+        console.print(f"📊 Total Plays: {summary['total_plays']}")
+        console.print(f"📈 Average Value Score: {summary['average_value_score']}")
+        console.print(f"⚠️  Average Risk Score: {summary['average_risk_score']}")
+        console.print(f"🎲 Average Contrarian Edge: {summary['average_contrarian_edge']}")
+
+        # Top value plays
+        console.print("\n🏆 Top Value Plays:")
+        for play in value_report["top_value_plays"]:
+            console.print(f"  {play['game']} ({play['team']}) - Value: {play['value_score']:.2f} - {play['recommendation']}")
+
+        # High risk plays
+        if value_report["high_risk_plays"]:
+            console.print("\n⚠️  High Risk Plays:")
+            for play in value_report["high_risk_plays"]:
+                console.print(f"  {play['game']} ({play['team']}) - Risk: {play['risk_score']:.2f} - {play['recommendation']}")
+
+        # Sharp money plays
+        if value_report["sharp_money_plays"]:
+            console.print("\n💰 Sharp Money Plays:")
+            for play in value_report["sharp_money_plays"]:
+                console.print(f"  {play['game']} ({play['team']}) - Value: {play['value_score']:.2f} - Contrarian: {play['contrarian_edge']:.2f}")
+
+        # Save report if output specified
+        if output:
+            with open(output, 'w') as f:
+                json.dump(value_report, f, indent=2)
+            console.print(f"\n💾 Value analysis report saved to: {output}")
+
+    except Exception as e:
+        console.print(f"❌ Value optimization failed: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def multi_llm_analysis(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Option(
+        "2025-09-17", "--date", "-d", help="Date for analysis (YYYY-MM-DD)"
+    ),
+    grok_file: Optional[Path] = typer.Option(
+        None, "--grok", help="Path to Grok analysis JSON file"
+    ),
+    chatgpt_file: Optional[Path] = typer.Option(
+        None, "--chatgpt", help="Path to ChatGPT analysis JSON file"
+    ),
+    combine_strategy: str = typer.Option(
+        "consensus", "--strategy", help="Combination strategy: consensus, weighted, or best"
+    ),
+):
+    """Integrate multiple LLM analyses into comprehensive workflow."""
+    try:
+        console.print(f"🤖 Integrating multiple LLM analyses for Week {week}...")
+
+        # Auto-detect files if not provided
+        if not grok_file:
+            grok_file = Path(f"data/json/{date}_contrarian_prompt_grok.json")
+        if not chatgpt_file:
+            chatgpt_file = Path(f"data/json/{date}_contrarian_prompt_chatgpt5.json")
+
+        # Load LLM analyses
+        analyses = {}
+
+        if grok_file.exists():
+            with open(grok_file, 'r') as f:
+                analyses['grok'] = json.load(f)
+            console.print(f"✅ Loaded Grok analysis: {grok_file}")
+        else:
+            console.print(f"⚠️  Grok file not found: {grok_file}")
+
+        if chatgpt_file.exists():
+            with open(chatgpt_file, 'r') as f:
+                analyses['chatgpt'] = json.load(f)
+            console.print(f"✅ Loaded ChatGPT analysis: {chatgpt_file}")
+        else:
+            console.print(f"⚠️  ChatGPT file not found: {chatgpt_file}")
+
+        if not analyses:
+            console.print("❌ No LLM analysis files found")
+            raise typer.Exit(1)
+
+        # Initialize multi-LLM analyzer
+        from .multi_llm_analyzer import MultiLLMAnalyzer
+        analyzer = MultiLLMAnalyzer()
+
+        # Combine analyses based on strategy
+        combined_analysis = analyzer.combine_analyses(analyses, strategy=combine_strategy)
+
+        # Generate consensus picks
+        consensus_picks = analyzer.generate_consensus_picks(combined_analysis)
+
+        # Create comprehensive report
+        report = analyzer.generate_multi_llm_report(analyses, combined_analysis, consensus_picks)
+
+        # Save integrated analysis
+        output_file = f"data/json/week_{week}_multi_llm_analysis.json"
+        with open(output_file, 'w') as f:
+            json.dump({
+                "date": date,
+                "individual_analyses": analyses,
+                "combined_analysis": combined_analysis,
+                "optimal_picks": consensus_picks,  # Use standard format
+                "consensus_picks": consensus_picks,
+                "strategy_used": combine_strategy,
+                "report": report
+            }, f, indent=2)
+
+        console.print(f"✅ Multi-LLM analysis saved to: {output_file}")
+        console.print(f"📊 Generated {len(consensus_picks)} consensus picks")
+        console.print(f"🎯 Strategy used: {combine_strategy}")
+
+        # Update Excel with consensus picks
+        from .excel_automation import ExcelAutomation
+        excel = ExcelAutomation()
+        success = excel.update_picks_from_analysis(output_file, week, date)
+        if success:
+            console.print("✅ Excel file updated with consensus picks")
+        else:
+            console.print("⚠️  Excel update had issues, but analysis was saved")
+
+    except Exception as e:
+        console.print(f"❌ Error in multi-LLM analysis: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def enhanced_weekly_workflow(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Option(
+        "2025-09-17", "--date", "-d", help="Date for analysis (YYYY-MM-DD)"
+    ),
+    include_multi_llm: bool = typer.Option(
+        True, "--multi-llm", help="Include multi-LLM analysis"
+    ),
+):
+    """Enhanced weekly workflow with multi-LLM integration."""
+    try:
+        console.print(f"🚀 Enhanced Weekly Workflow for Week {week}")
+        console.print("=" * 60)
+
+        # Step 1: Generate contrarian prompt
+        console.print("📝 Step 1: Generating contrarian prompt...")
+        from .core import PoolDominationSystem
+        system = PoolDominationSystem()
+        prompt_file = system.generate_contrarian_analysis_prompt_by_date(date)
+        console.print(f"✅ Prompt saved to: {prompt_file}")
+
+        # Step 2: Multi-LLM analysis (if enabled)
+        if include_multi_llm:
+            console.print("\n🤖 Step 2: Running multi-LLM analysis...")
+            # Run multi-LLM analysis
+            try:
+                multi_llm_analysis(week, date)
+            except Exception as e:
+                console.print(f"⚠️  Multi-LLM analysis skipped: {e}")
+                console.print("💡 Continue with standard workflow...")
+
+        # Step 3: Generate comprehensive CSV
+        console.print("\n📊 Step 3: Generating comprehensive CSV...")
+        comprehensive_csv(week, date)
+
+        # Step 4: Generate strategy report
+        console.print("\n📋 Step 4: Generating strategy report...")
+        strategy_report(week, date)
+
+        # Step 5: Generate enhanced report
+        console.print("\n🎯 Step 5: Generating enhanced report...")
+        enhanced_report(week, date)
+
+        console.print("\n🎉 Enhanced weekly workflow completed!")
+        console.print("📁 Check the following directories for outputs:")
+        console.print("  - data/excel/ (Excel files and CSV)")
+        console.print("  - data/json/ (Analysis data)")
+        console.print("  - reports/ (Strategy reports)")
+        console.print("  - data/prompts/ (Generated prompts)")
+
+    except Exception as e:
+        console.print(f"❌ Enhanced workflow failed: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def comprehensive_csv(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Option(None, "--date", "-d", help="Date in YYYY-MM-DD format"),
+    analysis: str = typer.Option(None, "--analysis", "-a", help="Path to contrarian analysis JSON file"),
+):
+    """Generate comprehensive CSV with all contrarian analysis metadata."""
+    try:
+        from .excel_automation import ExcelAutomation
+
+        excel_automation = ExcelAutomation()
+
+        if analysis:
+            console.print(f"📊 Generating comprehensive CSV from {analysis}")
+            csv_path = excel_automation.create_comprehensive_csv(week, date, analysis)
+            if csv_path:
+                console.print(f"✅ Comprehensive CSV created: {csv_path}")
+            else:
+                console.print("❌ Failed to create comprehensive CSV")
+                raise typer.Exit(1)
+        else:
+            console.print("❌ Analysis file required for comprehensive CSV")
+            raise typer.Exit(1)
+
+    except Exception as e:
+        console.print(f"❌ Comprehensive CSV generation failed: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
 def weekly_workflow(
     week: int = typer.Argument(..., help="Week number"),
     date: str = typer.Argument(..., help="Date (YYYY-MM-DD)"),

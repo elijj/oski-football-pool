@@ -7,7 +7,7 @@
 - **Strategy**: Must be DIFFERENT from the crowd
 - **Focus**: VALUE plays, not just favorites
 - **Competitive Edge**: Contrarian analysis wins pools
-- **Pool Format**: Select 20 picks from 40 available games
+- **Pool Format**: Select 20 picks from 20 available games
 
 ## Games to Analyze (20 games):
 - CAL@SDSU

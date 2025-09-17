@@ -1,0 +1,215 @@
+{
+    "date": "2025-09-17",
+    "contrarian_analysis": {
+      "public_betting_analysis": {
+        "high_public_games": ["FLA@Mia,F", "KC@NYG", "DAL@CHI", "LAR@PHIL", "DET@BALT"],
+        "contrarian_opportunities": ["STAN@VA", "DEN@LAC", "NYJ@TB", "LV@WASH"],
+        "sharp_money_indicators": ["MIA@BUFF", "PITT@NE", "HOU@JAC", "NO@SEA"]
+      },
+      "weather_impact": {
+        "outdoor_games": ["CAL@SDSU", "STAN@VA", "UW@WSU", "FLA@Mia,F", "MIA@BUFF", "ATL@CAR", "GB@CLEV", "HOU@JAC", "PITT@NE", "LAR@PHIL", "NYJ@TB", "IND@TENN", "LV@WASH", "NO@SEA", "DAL@CHI", "ARIZ@SF", "KC@NYG", "DET@BALT"],
+        "weather_advantages": ["BUFF", "SEA", "CHI", "SF"],
+        "weather_plays": ["MIA@BUFF", "NO@SEA", "DAL@CHI"]
+      },
+      "injury_analysis": {
+        "key_injuries": ["NYG", "CHI", "JAC", "TENN"],
+        "public_overreactions": ["KC", "DAL"],
+        "injury_value": ["DEN", "LV"]
+      },
+      "situational_factors": {
+        "must_win": ["CAR", "NYG", "TENN"],
+        "revenge_games": ["UW@WSU", "FLA@Mia,F", "PITT@NE"],
+        "lookahead_spots": ["KC", "DET"],
+        "short_weeks": ["DEN", "NO"],
+        "extra_rest": ["GB", "IND"]
+      }
+    },
+    "optimal_picks": [
+      {
+        "game": "KC@NYG",
+        "team": "KC",
+        "confidence": 20,
+        "reasoning": "SAFEST pick - Heavy favorite with strong offense, no major injuries reported ",
+        "contrarian_edge": "Public 75% on KC but sharp money confirms, line stable",
+        "value_play": "NYG injuries create mismatch, KC situational motivation high",
+        "risk_assessment": "LOW - Multiple advantages including depth"
+      },
+      {
+        "game": "DAL@CHI",
+        "team": "DAL",
+        "confidence": 19,
+        "reasoning": "SAFEST pick - Dallas has superior talent, weather mild in Chicago ",
+        "contrarian_edge": "Public heavy on DAL, but value in spread",
+        "value_play": "Public overreaction to CHI injuries",
+        "risk_assessment": "LOW - Clear advantages in matchup"
+      },
+      {
+        "game": "LAR@PHIL",
+        "team": "LAR",
+        "confidence": 18,
+        "reasoning": "SAFEST pick - Rams coming off strong start, no key injuries",
+        "contrarian_edge": "Public 72% on LAR, sharp agrees ",
+        "value_play": "PHIL lookahead spot potential",
+        "risk_assessment": "LOW - Balanced team with rest"
+      },
+      {
+        "game": "ARIZ@SF",
+        "team": "SF",
+        "confidence": 17,
+        "reasoning": "SAFEST pick - Home field in mild weather, SF depth shines ",
+        "contrarian_edge": "Public split, value on SF",
+        "value_play": "ARIZ short week fatigue",
+        "risk_assessment": "LOW - Strong home performance"
+      },
+      {
+        "game": "DET@BALT",
+        "team": "BALT",
+        "confidence": 16,
+        "reasoning": "SAFEST pick - Baltimore defense dominates, no injuries ",
+        "contrarian_edge": "Public 70% on BALT, but contrarian fade avoided",
+        "value_play": "DET lookahead to bigger game",
+        "risk_assessment": "LOW - Home advantage clear"
+      },
+      {
+        "game": "MIA@BUFF",
+        "team": "BUFF",
+        "confidence": 15,
+        "reasoning": "VALUE play - Buffalo home in potential wind, favors run game ",
+        "contrarian_edge": "Sharp money on BUFF despite public on MIA ",
+        "value_play": "Weather ignored by public",
+        "risk_assessment": "MEDIUM - Contrarian edge with weather"
+      },
+      {
+        "game": "PITT@NE",
+        "team": "PITT",
+        "confidence": 14,
+        "reasoning": "VALUE play - Pittsburgh revenge motivation, sharp line move ",
+        "contrarian_edge": "Public on NE, but injuries overreacted",
+        "value_play": "Situational revenge factor",
+        "risk_assessment": "MEDIUM - Good value"
+      },
+      {
+        "game": "NO@SEA",
+        "team": "SEA",
+        "confidence": 13,
+        "reasoning": "VALUE play - Seattle in rain, home advantage ",
+        "contrarian_edge": "Sharp on SEA, public wrong",
+        "value_play": "NO short week disadvantage",
+        "risk_assessment": "MEDIUM - Weather play"
+      },
+      {
+        "game": "HOU@JAC",
+        "team": "HOU",
+        "confidence": 12,
+        "reasoning": "VALUE play - Houston sharp money indicator ",
+        "contrarian_edge": "Public on JAC home, but injuries to JAC key",
+        "value_play": "Mispriced spread",
+        "risk_assessment": "MEDIUM - Contrarian opportunity"
+      },
+      {
+        "game": "FLA@Mia,F",
+        "team": "Mia,F",
+        "confidence": 11,
+        "reasoning": "VALUE play - Miami home in rivalry, public heavy but value ",
+        "contrarian_edge": "Over 70% public on Mia, but revenge motivates",
+        "value_play": "Warm weather favors passing",
+        "risk_assessment": "MEDIUM - State rivalry edge"
+      },
+      {
+        "game": "GB@CLEV",
+        "team": "GB",
+        "confidence": 10,
+        "reasoning": "VALUE play - Green Bay extra rest advantage ",
+        "contrarian_edge": "Public split, value on GB",
+        "value_play": "CLEV injuries underrated",
+        "risk_assessment": "MEDIUM - Rest factor"
+      },
+      {
+        "game": "CINC@MINN",
+        "team": "CINC",
+        "confidence": 9,
+        "reasoning": "VALUE play - Cincinnati offense mismatches MINN",
+        "contrarian_edge": "Indoor game, no weather, sharp on CINC",
+        "value_play": "Public overreaction to MINN home",
+        "risk_assessment": "MEDIUM - Offensive value"
+      },
+      {
+        "game": "ATL@CAR",
+        "team": "ATL",
+        "confidence": 8,
+        "reasoning": "VALUE play - Atlanta vs must-win CAR, but edge in talent",
+        "contrarian_edge": "Public on CAR, contrarian fade",
+        "value_play": "CAR motivation overrated early season",
+        "risk_assessment": "MEDIUM - Situational value"
+      },
+      {
+        "game": "IND@TENN",
+        "team": "IND",
+        "confidence": 7,
+        "reasoning": "VALUE play - Indy extra rest, TENN injuries ",
+        "contrarian_edge": "Public on TENN home, but value on IND",
+        "value_play": "Must-win for TENN creates pressure",
+        "risk_assessment": "MEDIUM - Injury and rest edge"
+      },
+      {
+        "game": "UW@WSU",
+        "team": "UW",
+        "confidence": 6,
+        "reasoning": "VALUE play - Washington in rivalry, motivation high",
+        "contrarian_edge": "Public on WSU, contrarian opportunity",
+        "value_play": "Revenge game factor",
+        "risk_assessment": "MEDIUM - Rivalry value"
+      },
+      {
+        "game": "DEN@LAC",
+        "team": "DEN",
+        "confidence": 5,
+        "reasoning": "UPSIDE play - Denver short week but injury depth ",
+        "contrarian_edge": "Public 78% on LAC, fade opportunity",
+        "value_play": "Indoor, but DEN value mispriced ",
+        "risk_assessment": "HIGH - Contrarian with depth"
+      },
+      {
+        "game": "NYJ@TB",
+        "team": "NYJ",
+        "confidence": 4,
+        "reasoning": "UPSIDE play - Jets contrarian in warm weather ",
+        "contrarian_edge": "Public on TB, opportunity to fade",
+        "value_play": "TB overrated at home",
+        "risk_assessment": "HIGH - Underdog value"
+      },
+      {
+        "game": "LV@WASH",
+        "team": "LV",
+        "confidence": 3,
+        "reasoning": "UPSIDE play - Vegas injury value underrated",
+        "contrarian_edge": "Public heavy on WASH, contrarian edge",
+        "value_play": "Situational motivation for LV",
+        "risk_assessment": "HIGH - High-reward pick"
+      },
+      {
+        "game": "STAN@VA",
+        "team": "STAN",
+        "confidence": 2,
+        "reasoning": "UPSIDE play - Stanford in showers, adapts well ",
+        "contrarian_edge": "Public on VA home, fade public",
+        "value_play": "Weather ignored, underdog value",
+        "risk_assessment": "HIGH - Weather-dependent"
+      },
+      {
+        "game": "CAL@SDSU",
+        "team": "SDSU",
+        "confidence": 1,
+        "reasoning": "UPSIDE play - SDSU home underdog, cloudy weather levels field ",
+        "contrarian_edge": "Contrarian home dog play",
+        "value_play": "Public wrong on CAL, no injuries ",
+        "risk_assessment": "HIGH - Differentiation upside"
+      }
+    ],
+    "strategy_summary": {
+      "high_confidence_safety": "Focus on 7+ point spreads with clear advantages",
+      "medium_confidence_value": "Target contrarian opportunities and value plays",
+      "low_confidence_upside": "Use contrarian plays for differentiation",
+      "competitive_edge": "Differentiate from crowd with contrarian analysis"
+    }
+  }

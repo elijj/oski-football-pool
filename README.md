@@ -75,14 +75,29 @@ See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed organization.
 | `football-pool report 1` | Create submission report |
 | `football-pool analyze-llm 1` | Automated AI analysis (requires API keys) |
 
-## 📁 Output Files
+## 📁 Output Organization
 
-All generated files are saved to organized directories:
+All generated files are cleanly organized in dedicated directories:
 
-- **Excel files**: `data/excel/Dawgpac25_2025-09-17.xlsx` (ready for pool submission)
-- **Analysis data**: `data/json/week_1_manual.json` (LLM analysis)
-- **Reports**: `reports/` directory
-- **Cache**: `data/cache/` (API responses, odds data)
+### 🎯 **Core Outputs**
+- **Excel Submissions**: `data/excel/Dawgpac25_YYYY-MM-DD.xlsx`
+- **Comprehensive CSV**: `data/excel/Week_X_Picks_YYYY-MM-DD.csv`
+- **Strategy Reports**: `reports/Week_X_Enhanced_Strategy_Report_YYYY-MM-DD.md`
+- **Next Week Previews**: `reports/Week_X_Preview_YYYY-MM-DD.md`
+
+### 📊 **Analysis Files**
+- **Contrarian Analysis**: `data/json/week_X_complete_contrarian_analysis.json`
+- **Value Optimization**: `data/json/week_X_value_analysis.json`
+- **API Usage**: `data/json/api_usage.json`
+
+### 📝 **Generated Content**
+- **Prompts**: `data/prompts/YYYY-MM-DD_contrarian_prompt.txt`
+- **Logs**: `logs/` (command execution, LLM interactions, API calls)
+
+### 📚 **Documentation**
+- **Output Guide**: `docs/OUTPUT_ORGANIZATION.md`
+- **API Reference**: `docs/api-reference.md`
+- **Integration Guide**: `docs/api-integration.md`
 
 ## 🎯 Analysis Options
 
