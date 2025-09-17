@@ -23,6 +23,7 @@ class ExcelAutomation:
     def __init__(self, template_path: str = "Dawgpac25.xlsx"):
         """Initialize with template file path."""
         self.template_path = template_path
+        self.output_dir = "data/excel"
         self.workbook = None
         self.worksheet = None
 
@@ -58,10 +59,16 @@ class ExcelAutomation:
                 # Default to week number if no date provided
                 filename = f"Dawgpac25_Week{week}.xlsx"
 
+            # Ensure output directory exists
+            os.makedirs(self.output_dir, exist_ok=True)
+
+            # Full path for output
+            output_path = os.path.join(self.output_dir, filename)
+
             # Save as new file (preserving original template)
-            self.workbook.save(filename)
-            logger.info(f"Created weekly file: {filename}")
-            return filename
+            self.workbook.save(output_path)
+            logger.info(f"Created weekly file: {output_path}")
+            return output_path
 
         except Exception as e:
             logger.error(f"Error creating weekly file: {e}")
@@ -82,14 +89,17 @@ class ExcelAutomation:
             else:
                 filename = f"Dawgpac25_Week{week}.xlsx"
 
-            if not os.path.exists(filename):
+            # Full path for file
+            file_path = os.path.join(self.output_dir, filename)
+
+            if not os.path.exists(file_path):
                 # Create new file if it doesn't exist
-                filename = self.create_weekly_file(week, date, participant_name)
-                if not filename:
+                file_path = self.create_weekly_file(week, date, participant_name)
+                if not file_path:
                     return False
 
             # Load workbook
-            workbook = load_workbook(filename)
+            workbook = load_workbook(file_path)
             worksheet = workbook.active
 
             # Update picks in the Excel file
@@ -132,8 +142,8 @@ class ExcelAutomation:
                         cell.alignment = Alignment(horizontal="center")
 
             # Save the updated file
-            workbook.save(filename)
-            logger.info(f"Updated picks for Week {week} in {filename}")
+            workbook.save(file_path)
+            logger.info(f"Updated picks for Week {week} in {file_path}")
             return True
 
         except Exception as e:
@@ -149,11 +159,14 @@ class ExcelAutomation:
             else:
                 filename = f"Dawgpac25_Week{week}.xlsx"
 
-            if not os.path.exists(filename):
+            # Full path for file
+            file_path = os.path.join(self.output_dir, filename)
+
+            if not os.path.exists(file_path):
                 return []
 
             # Load workbook
-            workbook = load_workbook(filename)
+            workbook = load_workbook(file_path)
             worksheet = workbook.active
 
             picks = []
@@ -228,16 +241,19 @@ class ExcelAutomation:
         """Create a backup of the current file."""
         try:
             filename = f"Dawgpac25_Week{week}.xlsx"
-            if not os.path.exists(filename):
+            file_path = os.path.join(self.output_dir, filename)
+
+            if not os.path.exists(file_path):
                 return None
 
             # Create backup with timestamp
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_filename = f"Dawgpac25_Week{week}_backup_{timestamp}.xlsx"
+            backup_path = os.path.join(self.output_dir, backup_filename)
 
-            shutil.copy2(filename, backup_filename)
-            logger.info(f"Created backup: {backup_filename}")
-            return backup_filename
+            shutil.copy2(file_path, backup_path)
+            logger.info(f"Created backup: {backup_path}")
+            return backup_path
 
         except Exception as e:
             logger.error(f"Error creating backup: {e}")

@@ -8,11 +8,10 @@ AI-powered football pool analysis with real-time odds, web search, and strategic
 ```bash
 # Install dependencies
 python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 
 # Configure API keys (optional but recommended)
-cp config/.env.example .env
-# Edit .env with your keys: THE_ODDS_API_KEY, OPENROUTER_API_KEY
+# Edit .env with your keys: THE_ODDS_API_KEY, OPENROUTER_API_KEY, EXA_API_KEY
 ```
 
 ### 2. Run Weekly Workflow
@@ -38,11 +37,12 @@ football-pool prompt 1 --enhanced
 
 # 2. Copy prompt to ChatGPT/Claude/Gemini
 # 3. Get JSON response and save as data/json/week_1_manual.json
-# 4. Import analysis
-football-pool import-llm 1 data/json/week_1_manual.json
+# 4. Generate picks and Excel file
+football-pool picks 1
+football-pool excel-update 1 --date 2025-09-17
 
-# 5. Generate picks and report
-football-pool picks 1 && football-pool report 1
+# 5. Your Excel file is ready: data/excel/Dawgpac25_2025-09-17.xlsx
+# 6. Submit to your pool using the Excel file
 ```
 
 ## 📁 Project Structure
@@ -68,10 +68,19 @@ See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed organization.
 | Command | Purpose |
 |---------|---------|
 | `football-pool prompt 1 --enhanced` | Generate research prompt with real odds |
-| `football-pool analyze-llm 1` | Automated AI analysis (free models) |
-| `football-pool combine-analyses 1 --automated --manual file.json` | Combine multiple analyses |
 | `football-pool picks 1` | Generate optimal picks |
+| `football-pool excel-update 1 --date 2025-09-17` | Create Excel file for submission |
 | `football-pool report 1` | Create submission report |
+| `football-pool analyze-llm 1` | Automated AI analysis (requires API keys) |
+
+## 📁 Output Files
+
+All generated files are saved to organized directories:
+
+- **Excel files**: `data/excel/Dawgpac25_2025-09-17.xlsx` (ready for pool submission)
+- **Analysis data**: `data/json/week_1_manual.json` (LLM analysis)
+- **Reports**: `reports/` directory
+- **Cache**: `data/cache/` (API responses, odds data)
 
 ## 🎯 Analysis Options
 
