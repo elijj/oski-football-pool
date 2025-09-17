@@ -1,0 +1,120 @@
+{
+  "date": "2025-09-17",
+  "contrarian_analysis": {
+    "public_betting_analysis": {
+      "high_public_games": [
+        "GB@CLEV",
+        "SEA@NO"
+      ],
+      "contrarian_opportunities": [
+        "CINC@MINN",
+        "LV@WASH",
+        "FLA@MIA,F",
+        "KC@NYG"
+      ],
+      "sharp_money_indicators": [
+        "DEN@LAC",
+        "PITT@NE"
+      ]
+    },
+    "weather_impact": {
+      "outdoor_games": [
+        "ATL@CAR",
+        "NYJ@TB",
+        "NO@SEA",
+        "DAL@CHI",
+        "GB@CLEV",
+        "ARIZ@SF",
+        "DET@BALT",
+        "LV@WASH",
+        "IND@TENN"
+      ],
+      "weather_advantages": [
+        "NO",
+        "SEA",
+        "CHI",
+        "BAL"
+      ],
+      "weather_plays": [
+        "NO@SEA",
+        "DAL@CHI"
+      ]
+    },
+    "injury_analysis": {
+      "key_injuries": [
+        "CINC (Joe Burrow out)",
+        "SF (Brock Purdy & George Kittle sidelined)",
+        "ARI (if Purdy out, weak QB depth)",
+        "BUF (some questionables on defense)"
+      ],
+      "public_overreactions": [
+        "49ers without Purdy / Kittle — public expecting them to collapse entirely vs Cardinals",
+        "Saints / Seahawks game — overreacting to early season defensive lapses"
+      ],
+      "injury_value": [
+        "SF defense stepping up vs ARI",
+        "CINC offense regressing but MINN may underappreciate value of backup vs strong defense",
+        "NO/SEA — defense importance amplified by weather"
+      ]
+    },
+    "situational_factors": {
+      "must_win": [
+        "KC",
+        "SF",
+        "NO",
+        "BAL"
+      ],
+      "revenge_games": [
+        "SEA vs NO",
+        "GB vs CLE"
+      ],
+      "lookahead_spots": [
+        "NYG vs KC — KC might rest / pace themselves if big early lead",
+        "DAL vs CHI — CHI might already be considering division implications vs DAL"
+      ],
+      "short_weeks": [
+        "IND@TENN",
+        "NYJ@TB"
+      ],
+      "extra_rest": [
+        "SF",
+        "KC"
+      ]
+    }
+  },
+  "optimal_picks": [
+    {
+      "game": "KC@NYG",
+      "team": "KC",
+      "confidence": 20,
+      "reasoning": "SAFEST pick – Chiefs are sharper, motivated, good starters, and Giants have shown defensive vulnerabilities",
+      "contrarian_edge": "Public is split in many markets (near 50/50) or slightly favoring NYG due to home crowd; sharp money seems to lean KC",
+      "value_play": "KC's offense more stable; NYG likely to struggle to contain both run and pass attack especially if weather or pressure gets heavy",
+      "risk_assessment": "LOW – heavy favorite with few known negatives"
+    },
+    {
+      "game": "LV@WASH",
+      "team": "LV",
+      "confidence": 15,
+      "reasoning": "VALUE play – Washington may be overvalued at home; Las Vegas has shown capability, matchup favors them somewhat",
+      "contrarian_edge": "Public likely loading up on WAS given home and crowd; line movement may show sharp money creeping LV",
+      "value_play": "LV's offense can exploit WAS' defensive weak spots; also motivation to prove early season strength",
+      "risk_assessment": "MEDIUM – some uncertainty but good upside"
+    },
+    {
+      "game": "CINC@MINN",
+      "team": "MINN",
+      "confidence": 5,
+      "reasoning": "UPSIDE play – with Burrow out, Bengals offense drops; many will still back CINC, making MINN a good fade / contrarian underdog pick",
+      "contrarian_edge": "Public probably >70% on CINC despite the injury; sharp bettors may be fading CINC too",
+      "value_play": "MINN defense can pressure backup QB; MINN at home with crowd edge",
+      "risk_assessment": "HIGH – risk from backup unpredictability, but high reward"
+    }
+  ],
+  "strategy_summary": {
+    "high_confidence_safety": "Lock in games where key starters are healthy, favorite vs weak matchup, low injury risk, moderate public consensus (not too lopsided)",
+    "medium_confidence_value": "Pick games where public is overloaded on one side (70%+), especially if there's a key injury / matchup discrepancy / weather factor ignored",
+    "low_confidence_upside": "Choose underdogs with strong matchups, injures to opponents, weather risk, or backup QBs—these differentiate from crowd",
+    "competitive_edge": "Focus on fading the public in games where you believe the credence is misplaced and capture value; don't over‐commit to risky plays—use a few low confidence picks to swing pool"
+  }
+}

@@ -163,6 +163,9 @@ api_usage.json
 data/cache/*.json
 data/json/api_usage.json
 
+# Generated prompts (tracked for reference)
+# data/prompts/ - prompts are tracked for reference
+
 # Environment variables (contains API keys)
 .env
 .env.*

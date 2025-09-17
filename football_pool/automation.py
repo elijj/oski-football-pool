@@ -81,7 +81,8 @@ class WeeklyAutomation:
 
             # 1. Generate enhanced prompt
             prompt = self.system.generate_llm_research_prompt_by_date(date)
-            prompt_file = f"{date}_prompt.txt"
+            os.makedirs("data/prompts", exist_ok=True)
+            prompt_file = f"data/prompts/{date}_prompt.txt"
             with open(prompt_file, "w") as f:
                 f.write(prompt)
 
@@ -275,7 +276,7 @@ class WeeklyAutomation:
                 backup_files.append(excel_backup)
 
             # Backup prompt file
-            prompt_file = f"{date}_prompt.txt"
+            prompt_file = f"data/prompts/{date}_prompt.txt"
             if os.path.exists(prompt_file):
                 backup_file = f"{prompt_file}.backup"
                 os.rename(prompt_file, backup_file)

@@ -36,6 +36,9 @@ For outdoor games, analyze:
 - **Weather-Dependent Teams**: Which teams benefit/suffer from conditions
 - **Public Weather Ignorance**: Weather factors public ignores
 - **Weather Plays**: Contrarian opportunities based on conditions
+- **Wind Impact**: Passing vs running game advantages
+- **Temperature Effects**: Cold weather vs warm weather teams
+- **Precipitation**: Rain/snow impact on game strategy
 
 ### 3. INJURY IMPACT ANALYSIS
 For each game, assess:
@@ -43,8 +46,19 @@ For each game, assess:
 - **Public Overreaction**: Injuries public overreacts to
 - **Depth Analysis**: Teams with good depth vs injury-prone
 - **Injury Value**: Underrated impact of role player injuries
+- **Position Impact**: QB vs RB vs WR vs defensive injuries
+- **Backup Analysis**: Quality of backup players
+- **Injury Trends**: Teams with injury-prone players
 
-### 4. SITUATIONAL FACTORS
+### 4. COMPETITOR ANALYSIS
+For each game, analyze:
+- **Common Picks**: Games where multiple competitors are on same side
+- **Contrarian Opportunities**: Games where competitors are heavily on one side
+- **Avoid Picks**: Games where 50%+ of competitors are on same team
+- **Competitor Patterns**: Favorite vs underdog tendencies
+- **Differentiation Strategy**: How to be different from crowd
+
+### 5. SITUATIONAL FACTORS
 Identify:
 - **Must-Win Scenarios**: Teams with playoff implications
 - **Revenge Games**: Emotional motivation factors

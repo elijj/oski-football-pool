@@ -6,6 +6,7 @@ Provides a comprehensive CLI for managing weekly workflow.
 
 import json
 import os
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Optional
 
@@ -100,8 +101,9 @@ def contrarian_prompt(
             console.print(f"✅ Contrarian prompt saved to {output_file}")
             logger.excel_logger.info(f"Saved contrarian prompt to {output_file}")
         else:
-            # Save to default filename
-            filename = f"{date}_contrarian_prompt.txt"
+            # Save to data/prompts directory
+            os.makedirs("data/prompts", exist_ok=True)
+            filename = f"data/prompts/{date}_contrarian_prompt.txt"
             with open(filename, "w") as f:
                 f.write(prompt_text)
             console.print(f"💾 Contrarian prompt saved to {filename}")
@@ -767,9 +769,10 @@ def excel_prompt(
         # Display the prompt
         console.print(Panel(prompt_text, title=f"{date} Research Prompt", border_style="blue"))
 
-        # Save to file
+        # Save to data/prompts directory
+        os.makedirs("data/prompts", exist_ok=True)
         safe_date = date.replace(" ", "_").replace("/", "-")
-        filename = f"{safe_date}_prompt.txt"
+        filename = f"data/prompts/{safe_date}_prompt.txt"
         with open(filename, "w") as f:
             f.write(prompt_text)
         console.print(f"💾 Prompt saved to {filename}")
@@ -1130,6 +1133,323 @@ def logs(
 
     except Exception as e:
         console.print(f"❌ Error with logs command: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def strategy_report(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Argument(..., help="Date (YYYY-MM-DD)"),
+    analysis_file: str = typer.Option(
+        None, "--analysis", "-a", help="Path to analysis JSON file"
+    ),
+    picks_file: str = typer.Option(
+        None, "--picks", "-p", help="Path to picks JSON file"
+    ),
+    output_dir: str = typer.Option(
+        "reports", "--output", "-o", help="Output directory for reports"
+    ),
+):
+    """Generate comprehensive strategy report in markdown format."""
+    try:
+        from .report_generator import StrategyReportGenerator
+
+        # Set default analysis file if not provided
+        if not analysis_file:
+            analysis_file = f"data/json/week_{week}_complete_contrarian_analysis.json"
+
+        # Check if analysis file exists
+        if not os.path.exists(analysis_file):
+            console.print(f"❌ Analysis file not found: {analysis_file}")
+            console.print("💡 Generate analysis first with: football-pool contrarian-prompt")
+            raise typer.Exit(1)
+
+        # Initialize report generator
+        generator = StrategyReportGenerator()
+
+        # Generate report
+        console.print(f"📊 Generating strategy report for Week {week}...")
+        report_path = generator.generate_weekly_strategy_report(
+            week=week,
+            date=date,
+            analysis_file=analysis_file,
+            picks_file=picks_file
+        )
+
+        console.print(f"✅ Strategy report generated: {report_path}")
+        console.print(f"📁 Report saved to: {report_path}")
+
+        # Show preview of report
+        with open(report_path, 'r') as f:
+            content = f.read()
+            lines = content.split('\n')
+            preview_lines = lines[:20]  # First 20 lines
+
+        console.print("\n📋 Report Preview:")
+        console.print(Panel('\n'.join(preview_lines), title="Strategy Report Preview", border_style="blue"))
+
+        logger.log_command_end("strategy_report", success=True)
+
+    except Exception as e:
+        logger.log_error(e, f"strategy_report command for week {week}")
+        console.print(f"❌ Error generating strategy report: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def enhanced_report(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Argument(..., help="Date (YYYY-MM-DD)"),
+    analysis_file: str = typer.Option(
+        None, "--analysis", "-a", help="Path to analysis JSON file"
+    ),
+    use_llm: bool = typer.Option(
+        True, "--llm/--no-llm", help="Use LLM for enhanced analysis"
+    ),
+):
+    """Generate LLM-enhanced strategy report with next week considerations."""
+    try:
+        from .report_generator import StrategyReportGenerator
+
+        # Set default analysis file if not provided
+        if not analysis_file:
+            analysis_file = f"data/json/week_{week}_complete_contrarian_analysis.json"
+
+        # Check if analysis file exists
+        if not os.path.exists(analysis_file):
+            console.print(f"❌ Analysis file not found: {analysis_file}")
+            console.print("💡 Generate analysis first with: football-pool contrarian-prompt")
+            raise typer.Exit(1)
+
+        # Initialize report generator
+        generator = StrategyReportGenerator()
+
+        # Get API key if LLM is requested
+        openrouter_api_key = None
+        if use_llm:
+            openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+            if not openrouter_api_key:
+                console.print("⚠️ OPENROUTER_API_KEY not found, generating standard report")
+                use_llm = False
+
+        # Generate enhanced report
+        console.print(f"📊 Generating {'LLM-enhanced ' if use_llm else ''}strategy report for Week {week}...")
+
+        if use_llm:
+            report_content = generator.generate_llm_enhanced_report(
+                week=week,
+                date=date,
+                analysis_file=analysis_file,
+                openrouter_api_key=openrouter_api_key
+            )
+        else:
+            report_content = generator._build_report_content(
+                week=week,
+                date=date,
+                analysis_data=generator._load_analysis_data(analysis_file),
+                picks_data=None
+            )
+
+        # Save report
+        report_filename = f"Week_{week}_Enhanced_Strategy_Report_{date}.md"
+        report_path = Path("reports") / report_filename
+        report_path.parent.mkdir(exist_ok=True)
+
+        with open(report_path, 'w') as f:
+            f.write(report_content)
+
+        console.print(f"✅ Enhanced strategy report generated: {report_path}")
+        console.print(f"📁 Report saved to: {report_path}")
+
+        # Show preview of report
+        lines = report_content.split('\n')
+        preview_lines = lines[:25]  # First 25 lines
+
+        console.print("\n📋 Report Preview:")
+        console.print(Panel('\n'.join(preview_lines), title="Enhanced Strategy Report Preview", border_style="green"))
+
+        logger.log_command_end("enhanced_report", success=True)
+
+    except Exception as e:
+        logger.log_error(e, f"enhanced_report command for week {week}")
+        console.print(f"❌ Error generating enhanced strategy report: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def weekly_workflow(
+    week: int = typer.Argument(..., help="Week number"),
+    date: str = typer.Argument(..., help="Date (YYYY-MM-DD)"),
+    use_llm: bool = typer.Option(
+        True, "--llm/--no-llm", help="Use LLM for enhanced analysis"
+    ),
+    skip_picks: bool = typer.Option(
+        False, "--skip-picks", help="Skip generating picks (use existing analysis)"
+    ),
+    analysis_file: str = typer.Option(
+        None, "--analysis", "-a", help="Path to existing analysis JSON file"
+    ),
+):
+    """🚀 COMPLETE WEEKLY WORKFLOW - Generate everything for the week in one command."""
+    try:
+        from .report_generator import StrategyReportGenerator
+
+        console.print(f"🚀 Starting COMPLETE WEEKLY WORKFLOW for Week {week} ({date})")
+        console.print("=" * 80)
+
+        # Step 1: Generate contrarian prompt
+        console.print("\n📝 Step 1: Generating contrarian analysis prompt...")
+        try:
+            from .core import PoolDominationSystem
+            system = PoolDominationSystem()
+
+            # Generate contrarian prompt
+            prompt_text = system.generate_contrarian_analysis_prompt_by_date(date)
+
+            # Save prompt
+            os.makedirs("data/prompts", exist_ok=True)
+            prompt_file = f"data/prompts/{date}_contrarian_prompt.txt"
+            with open(prompt_file, "w") as f:
+                f.write(prompt_text)
+
+            console.print(f"✅ Contrarian prompt saved: {prompt_file}")
+            console.print("💡 Copy this prompt to ChatGPT/Claude/Gemini and get JSON response")
+            console.print("💡 Save the JSON response as: data/json/week_{week}_complete_contrarian_analysis.json")
+
+        except Exception as e:
+            console.print(f"⚠️ Warning: Could not generate contrarian prompt: {e}")
+
+        # Step 2: Check for analysis file
+        if not analysis_file:
+            analysis_file = f"data/json/week_{week}_complete_contrarian_analysis.json"
+
+        if not os.path.exists(analysis_file):
+            console.print(f"\n⚠️ Analysis file not found: {analysis_file}")
+            console.print("📋 MANUAL STEP REQUIRED:")
+            console.print("1. Copy the contrarian prompt from data/prompts/")
+            console.print("2. Paste into ChatGPT/Claude/Gemini")
+            console.print("3. Get JSON response and save as the analysis file")
+            console.print("4. Run this command again with --analysis path/to/your/analysis.json")
+            console.print("\n🔄 Continuing with standard picks generation...")
+
+            # Generate standard picks as fallback
+            if not skip_picks:
+                console.print("\n📊 Step 2: Generating standard picks...")
+                try:
+                    from .core import PoolDominationSystem
+                    system = PoolDominationSystem()
+
+                    # Generate picks
+                    picks = system.generate_optimal_picks(week)
+                    console.print("✅ Standard picks generated")
+
+                except Exception as e:
+                    console.print(f"⚠️ Warning: Could not generate standard picks: {e}")
+
+            console.print("\n📋 WORKFLOW INCOMPLETE - Manual step required")
+            console.print("💡 Run again after saving your analysis JSON file")
+            return
+
+        # Step 3: Update Excel with analysis
+        console.print(f"\n📊 Step 2: Updating Excel with contrarian analysis...")
+        try:
+            from .excel_automation import ExcelAutomation
+            excel = ExcelAutomation()
+
+            # Update Excel with contrarian analysis
+            success = excel.update_picks(week, [], date)
+            if success:
+                console.print(f"✅ Excel file updated: data/excel/Dawgpac25_{date}.xlsx")
+            else:
+                console.print("⚠️ Warning: Excel update failed")
+
+        except Exception as e:
+            console.print(f"⚠️ Warning: Could not update Excel: {e}")
+
+        # Step 4: Generate strategy report
+        console.print(f"\n📋 Step 3: Generating strategy report...")
+        try:
+            generator = StrategyReportGenerator()
+
+            # Generate enhanced report
+            if use_llm and os.getenv("OPENROUTER_API_KEY"):
+                report_content = generator.generate_llm_enhanced_report(
+                    week=week,
+                    date=date,
+                    analysis_file=analysis_file,
+                    openrouter_api_key=os.getenv("OPENROUTER_API_KEY")
+                )
+                report_filename = f"Week_{week}_Enhanced_Strategy_Report_{date}.md"
+            else:
+                report_content = generator._build_report_content(
+                    week=week,
+                    date=date,
+                    analysis_data=generator._load_analysis_data(analysis_file),
+                    picks_data=None
+                )
+                report_filename = f"Week_{week}_Strategy_Report_{date}.md"
+
+            # Save report
+            report_path = Path("reports") / report_filename
+            report_path.parent.mkdir(exist_ok=True)
+
+            with open(report_path, 'w') as f:
+                f.write(report_content)
+
+            console.print(f"✅ Strategy report generated: {report_path}")
+
+        except Exception as e:
+            console.print(f"⚠️ Warning: Could not generate strategy report: {e}")
+
+        # Step 5: Generate next week preview
+        console.print(f"\n🔍 Step 4: Generating next week preview...")
+        try:
+            next_week_date = (datetime.strptime(date, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d")
+            preview_content = generator.generate_next_week_preview(week, date)
+
+            preview_filename = f"Week_{week+1}_Preview_{next_week_date}.md"
+            preview_path = Path("reports") / preview_filename
+            preview_path.parent.mkdir(exist_ok=True)
+
+            with open(preview_path, 'w') as f:
+                f.write(preview_content)
+
+            console.print(f"✅ Next week preview generated: {preview_path}")
+
+        except Exception as e:
+            console.print(f"⚠️ Warning: Could not generate next week preview: {e}")
+
+        # Step 6: Summary
+        console.print("\n" + "=" * 80)
+        console.print("🎯 WEEKLY WORKFLOW COMPLETE!")
+        console.print("=" * 80)
+
+        # Show generated files
+        console.print("\n📁 Generated Files:")
+        console.print(f"  📝 Contrarian Prompt: data/prompts/{date}_contrarian_prompt.txt")
+        console.print(f"  📊 Excel File: data/excel/Dawgpac25_{date}.xlsx")
+        console.print(f"  📋 Strategy Report: reports/{report_filename}")
+        console.print(f"  🔍 Next Week Preview: reports/Week_{week+1}_Preview_{next_week_date}.md")
+
+        # Show next steps
+        console.print("\n🚀 Next Steps:")
+        console.print("1. Review the strategy report for your picks")
+        console.print("2. Submit the Excel file to your pool")
+        console.print("3. Use the next week preview for future planning")
+        console.print("4. Track results and refine strategy")
+
+        # Show competitive edge
+        console.print("\n💰 Competitive Edge:")
+        console.print("✅ Contrarian analysis for differentiation")
+        console.print("✅ Value plays for maximum earnings")
+        console.print("✅ Risk management with confidence points")
+        console.print("✅ Future planning with next week insights")
+
+        logger.log_command_end("weekly_workflow", success=True)
+
+    except Exception as e:
+        logger.log_error(e, f"weekly_workflow command for week {week}")
+        console.print(f"❌ Error in weekly workflow: {e}")
         raise typer.Exit(1)
 
 

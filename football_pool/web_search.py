@@ -27,8 +27,9 @@ class WebSearchIntegration:
 
     def __init__(self, api_key: Optional[str] = None):
         """Initialize web search integration."""
-        # Use demo credentials if no API key provided
-        self.api_key = api_key or "e7562a40-4125-49a6-9950-99d52d626fc1"
+        if not api_key:
+            raise ValueError("SMITHERY_API_KEY is required for web search. No fallback data available.")
+        self.api_key = api_key
         self.profile = "victorious-barracuda-F6fVdr"
         self.base_url = "https://server.smithery.ai/exa/mcp"
         self.session = requests.Session()

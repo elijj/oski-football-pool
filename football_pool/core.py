@@ -20,6 +20,9 @@ from .database import DatabaseManager
 from .logging_config import logger as app_logger
 from .models import Pick, PoolPosition
 from .web_search import FootballWebSearch
+from .weather_data import WeatherDataProvider
+from .injury_data import InjuryDataProvider
+from .competitor_tracking import CompetitorTracker
 
 logger = logging.getLogger(__name__)
 
@@ -180,7 +183,19 @@ class PoolDominationSystem:
         self.usage_tracker = APIUsageTracker()
 
         # Web Search Integration
-        self.web_search = FootballWebSearch(os.getenv("EXA_API_KEY"))
+        self.web_search = FootballWebSearch(os.getenv("SMITHERY_API_KEY"))
+
+        # Weather Data Integration
+        self.weather_provider = WeatherDataProvider()
+
+        # Injury Data Integration
+        self.injury_provider = InjuryDataProvider()
+
+        # Competitor Tracking Integration
+        self.competitor_tracker = CompetitorTracker()
+
+        # Validate required API keys for live data
+        self._validate_api_keys()
 
         # Strategy thresholds
         self.variance_thresholds = {
@@ -1750,3 +1765,30 @@ Please provide your analysis in the exact JSON format above.
         # Fallback to manual prompt
         logger.info("Falling back to manual prompt generation")
         return None
+
+    def _validate_api_keys(self) -> None:
+        """Validate that required API keys are present for live data."""
+        missing_keys = []
+
+        # Check for required API keys
+        if not os.getenv("THE_ODDS_API_KEY"):
+            missing_keys.append("THE_ODDS_API_KEY")
+
+        if not os.getenv("OPENWEATHER_API_KEY"):
+            missing_keys.append("OPENWEATHER_API_KEY")
+
+        if not os.getenv("ESPN_API_KEY"):
+            missing_keys.append("ESPN_API_KEY")
+
+        if not os.getenv("OPENROUTER_API_KEY"):
+            missing_keys.append("OPENROUTER_API_KEY")
+
+        if not os.getenv("SMITHERY_API_KEY"):
+            missing_keys.append("SMITHERY_API_KEY")
+
+        if missing_keys:
+            logger.warning(f"Missing API keys: {', '.join(missing_keys)}")
+            logger.warning("Some features may not work without proper API keys")
+            logger.warning("Set environment variables or add to .env file")
+        else:
+            logger.info("All required API keys are present")
