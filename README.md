@@ -56,9 +56,11 @@ oski-football-pool/
 ├── 📁 scripts/                      # Analysis & automation scripts
 ├── 📁 data/                         # Data files (Excel, JSON, cache)
 ├── 📁 config/                       # Configuration & prompts
-├── 📁 reports/                      # Documentation & reports
+├── 📁 reports/                      # Generated reports (ignored by git)
 ├── 📁 tests/                        # Test files
-└── 📁 docs/                         # Additional documentation
+└── 📁 docs/                         # All documentation
+    ├── 📁 reports/                  # Report documentation
+    └── 📁 other docs...            # Additional documentation
 ```
 
 See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed organization.
