@@ -348,8 +348,12 @@ __pypackages__/
 # PROJECT-SPECIFIC IGNORES
 # =============================================================================
 
-# Generated reports
-reports/
+# Generated reports (but keep documentation)
+reports/*.xlsx
+reports/*.csv
+reports/*.json
+reports/analysis/
+reports/weekly/
 output/
 results/
 
