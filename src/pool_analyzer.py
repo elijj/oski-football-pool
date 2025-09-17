@@ -158,29 +158,11 @@ class PoolDominationSystem:
         # Sort by confidence
         games.sort(key=lambda x: x.get("confidence_score", 50), reverse=True)
 
-        # Fibonacci-inspired point structure
+        # Unique confidence points from 20 down to 1
         points = [
-            20,
-            19,
-            18,  # Top tier (small gaps)
-            16,
-            14,
-            12,  # Second tier (larger gaps)
-            10,
-            8,
-            7,  # Third tier
-            6,
-            5,
-            4,  # Fourth tier
-            3,
-            3,
-            2,  # Fifth tier
-            2,
-            1,
-            1,
-            1,
-            1,
-        ]  # Bottom tier
+            20, 19, 18, 17, 16, 15, 14, 13, 12, 11,
+            10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+        ]
 
         for i, game in enumerate(games[:20]):
             game["confidence_points"] = points[i] if i < len(points) else 1

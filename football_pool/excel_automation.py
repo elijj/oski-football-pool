@@ -302,6 +302,17 @@ class ExcelAutomation:
             "Mississippi State": "MSST",
             "Ole Miss": "MISS",
             "Vanderbilt": "VANDY",
+            # Additional CFB teams
+            "Louisville": "LOU",
+            "Stanford": "STAN",
+            "Penn State": "PSU",
+            "UCLA": "UCLA",
+            "Florida State": "FSU",
+            "Nebraska": "NEB",
+            "Indiana": "UIND",
+            "California": "CAL",
+            "North Carolina": "NC",
+            "Alabama": "ALA",
         }
 
     def convert_team_names(self, picks: list[dict[str, Any]]) -> list[dict[str, Any]]:

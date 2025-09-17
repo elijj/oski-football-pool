@@ -574,8 +574,8 @@ class PoolDominationSystem:
         # Sort by confidence
         picks.sort(key=lambda x: x.conf or 0, reverse=True)
 
-        # Fibonacci-inspired point structure
-        points = [20, 19, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 3, 2, 2, 1, 1, 1, 1]
+        # Unique confidence points from 20 down to 1
+        points = [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
         for i, pick in enumerate(picks[:20]):
             pick.confidence_points = points[i] if i < len(points) else 1
